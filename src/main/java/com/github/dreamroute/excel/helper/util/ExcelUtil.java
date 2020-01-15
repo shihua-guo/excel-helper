@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -23,7 +22,7 @@ import com.github.dreamroute.excel.helper.cache.CacheFactory;
 
 /**
  * Export workbook util
- * 
+ *
  * @author 342252328@qq.com
  *
  */
@@ -33,7 +32,7 @@ public final class ExcelUtil {
 
     /**
      * export as a {@link Workbook}, maybe include one or more sheet.
-     * 
+     *
      * @param sheets it's a array, every Collection will create a sheet.
      * @return return a {@link Workbook}
      */
@@ -79,9 +78,9 @@ public final class ExcelUtil {
 
     /**
      * 根据列对应的CellProps创建对应的CellStyle数组，因为如果每个cell都创建一个CellStyle，那么导出大量数据时候会出现内存崩溃， 所以每一列对应一个CellStyle
-     * 
+     *
      * @param cps <code>CellProps</code>
-     * 
+     *
      */
     private static CellStyle[] createDataCellStyle(Workbook workbook, CellProps[] cps) {
         CellStyle[] css = null;
@@ -163,7 +162,7 @@ public final class ExcelUtil {
 
     /**
      * process style, @Header and @Cell common props.
-     * 
+     *
      * @param cs
      * @param baseProps
      */

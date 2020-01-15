@@ -11,21 +11,17 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collection;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.github.dreamroute.excel.helper.util.*;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.github.dreamroute.excel.helper.exception.ExcelHelperException;
-import com.github.dreamroute.excel.helper.util.BaseResponse;
-import com.github.dreamroute.excel.helper.util.DataAssistant;
-import com.github.dreamroute.excel.helper.util.ExcelType;
-import com.github.dreamroute.excel.helper.util.ExcelUtil;
 
 /**
  * the root operation class, you'll use it to create or export excel files/{@link Workbook}
- * 
+ *
  * @author 342252328@qq.com
  * @since JDK 1.7
  *
@@ -39,7 +35,7 @@ public class ExcelHelper {
      * export as {@link Workbook}.
      * <p>
      * if you do not want to export by ExcelHelper, you can only create a workbook, then operate the workbook by yourself.
-     * 
+     *
      * @param type {@link ExcelType}
      * @param sheets your bussiness data.
      * @return return {@link Workbook}
@@ -50,7 +46,7 @@ public class ExcelHelper {
 
     /**
      * export as a file.
-     * 
+     *
      * @param type {@link ExcelType}
      * @param sheets your bussiness data.
      * @param path file path
@@ -61,7 +57,7 @@ public class ExcelHelper {
 
     /**
      * export as a file.
-     * 
+     *
      * @param type {@link ExcelType}
      * @param sheets sheets your bussiness data.
      * @param newFile which file you'll write to.
@@ -76,7 +72,7 @@ public class ExcelHelper {
 
     /**
      * export to byte array.
-     * 
+     *
      * @param type {@link ExcelType}
      * @param sheets sheets sheets your bussiness data.
      * @return return a byte array with data.
@@ -93,7 +89,7 @@ public class ExcelHelper {
 
     /**
      * import from path.
-     * 
+     *
      * @param type {@link ExcelType}
      * @param path the file path
      * @param cls target Class<T>
@@ -109,7 +105,7 @@ public class ExcelHelper {
 
     /**
      * import from file.
-     * 
+     *
      * @param type {@link ExcelType}
      * @param importFile the file path
      * @param cls target Class<T>
@@ -130,7 +126,7 @@ public class ExcelHelper {
 
     /**
      * import from ByteArray
-     * 
+     *
      * @param type {@link ExcelType}
      * @param byteArr byte array to import.
      * @param cls target Class<T>
@@ -146,7 +142,7 @@ public class ExcelHelper {
 
     /**
      * import from {@link InputStream}
-     * 
+     *
      * @param type {@link ExcelType}
      * @param inputStream {@link InputStream}
      * @param cls target Class<T>

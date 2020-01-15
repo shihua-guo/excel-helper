@@ -1,30 +1,14 @@
 package com.github.dreamroute.excel.helper.util;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.ReflectPermission;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.ClassUtils;
+import com.github.dreamroute.excel.helper.annotation.*;
+import com.github.dreamroute.excel.helper.cache.CacheFactory;
+import com.github.dreamroute.excel.helper.exception.ExcelHelperException;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 
-import com.github.dreamroute.excel.helper.annotation.Cell;
-import com.github.dreamroute.excel.helper.annotation.CellProps;
-import com.github.dreamroute.excel.helper.annotation.Column;
-import com.github.dreamroute.excel.helper.annotation.DateColumn;
-import com.github.dreamroute.excel.helper.annotation.Header;
-import com.github.dreamroute.excel.helper.annotation.HeaderProps;
-import com.github.dreamroute.excel.helper.annotation.PropsAnno;
-import com.github.dreamroute.excel.helper.annotation.Sheet;
-import com.github.dreamroute.excel.helper.cache.CacheFactory;
-import com.github.dreamroute.excel.helper.exception.ExcelHelperException;
+import java.lang.reflect.Field;
+import java.lang.reflect.ReflectPermission;
+import java.util.*;
 
 /**
  * util class
@@ -36,7 +20,7 @@ public final class ClassAssistant {
     private ClassAssistant() {}
 
     public static String getSheetName(Class<?> cls) {
-        String sheetName = ClassUtils.getSimpleName(cls);
+        String sheetName = cls==null?"":cls.getSimpleName();
         if (cls.isAnnotationPresent(Sheet.class)) {
             Sheet sheetAnno = cls.getAnnotation(Sheet.class);
             sheetName = sheetAnno.name();
@@ -160,13 +144,13 @@ public final class ClassAssistant {
                 anno = anno == null ? PropsAnno.class.getDeclaredField("props").getAnnotation(Cell.class) : anno;
                 cp.setHorizontal(anno.horizontal());
                 cp.setVertical(anno.vertical());
-                
+
                 if (field.isAnnotationPresent(DateColumn.class)) {
                     DateColumn dc = field.getAnnotation(DateColumn.class);
                     cp.setOriginalDateFormate(dc.originalDateFormate());
                     cp.setTargetDateFormate(dc.targetDateFormate());
                 }
-                
+
                 hps[i] = cp;
             } catch (NoSuchFieldException | SecurityException e) {
                 throw new ExcelHelperException(e);
